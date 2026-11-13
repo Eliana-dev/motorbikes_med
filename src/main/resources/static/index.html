@@ -110,21 +110,46 @@
             <input type="hidden" id="productId">
   <!-- Calsar id-->          
             <div class="form-group">
-                <label for="code">Código:</label>
-                <input type="text" id="code" placeholder="Ej. P001">
+                <label for="code">ID:</label>
+                <input type="text" id="code" readonly>
             </div>
             <div class="form-group">
-                <label for="name">Nombrecito:</label>
+                <label for="name">Nombre:</label>
                 <input type="text" id="name" required placeholder="Ej. Aceite 20w-50">
             </div>
             <div class="form-group">
-                <label for="salePrice">Precio:</label>
-                <input type="number" id="salePrice" required placeholder="Ej. 1.200">
+                <label for="brand">Brand:</label>
+                <input type="text" id="brand" required placeholder="Ej. Motul">
+            </div>
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <input type="text" id="category" required placeholder="Ej. Aceite">
             </div>
             <div class="form-group">
                 <label for="stock">Stock:</label>
                 <input type="number" id="stock" required placeholder="Ej. 1000">
             </div>
+            <div class="form-group">
+                <label for="minStock">Stock Minimo:</label>
+                <input type="number" id="minStock" required placeholder="Ej. 5">
+            </div>
+            <div class="form-group">
+                <label for="maxStock">Stock Máximo:</label>
+                <input type="number" id="maxStock" required placeholder="Ej. 50">
+            </div>
+            <div class="form-group">
+                <label for="salePrice">Precio de Venta:</label>
+                <input type="number" id="salePrice" required placeholder="Ej. 1200">
+            </div>
+            <div class="form-group">
+                <label for="purchasePrice">Precio de Compra:</label>
+                <input type="number" id="purchasePrice" required placeholder="Ej. 1000">
+            </div>
+            <div class="form-group">
+                <label for="expirationDate">Fecha de Expiración (opcional):</label>
+                <input type="date" id="expirationDate" name="expirationDate">
+            </div>
+            
             
             <button type="submit" id="btnSubmit">Guardar Producto</button>
             <button type="button" id="btnCancel" class="btn-cancel" onclick="limpiarFormulario()">Cancelar Edición</button>
@@ -136,11 +161,15 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Código</th>
                     <th>Nombre</th>
-                    <th>Precio de Venta</th>
+                    <th>Marca</th>
+                    <th>Categoria</th>
                     <th>Stock</th>
-                    <th>Acciones</th>
+                    <th>Stock Minimo</th>
+                    <th>Stock Máximo</th>
+                    <th>Precio de venta</th>
+                    <th>Precio de compra</th>
+                    <th>Fecha de expiración</th>
                 </tr>
             </thead>
             <tbody id="productTableBody">
@@ -166,12 +195,17 @@
                     tbody.innerHTML += `
                         <tr>
                             <td>${p.id}</td>
-                            <td>${p.code}</td>
                             <td>${p.name}</td>
-                            <td>$${p.salePrice}</td>
+                            <td>${p.brand}</td>
+                            <td>${p.category}</td>
                             <td>${p.stock}</td>
+                            <td>${p.minStock}</td>
+                            <td>${p.maxStock}</td>
+                            <td>${p.salePrice}</td>
+                            <td>${p.purchasePrice}</td>
+                            <td>${p.expirationDate}</td>
                             <td>
-                                <button class="btn-edit" onclick="prepararEdicion(${p.id}, '${p.code}', '${p.name}', ${p.salePrice}, ${p.stock})">Editar</button>
+                                <button class="btn-edit" onclick="prepararEdicion(${p.id}, '${p.name}', '${p.brand}', '${p.category}', ${p.stock}, ${p.minStock}, ${p.maxStock}, ${p.salePrice}, ${p.purchasePrice}, '${p.expirationDate}')">Editar</button>
                                 <button class="btn-delete" onclick="eliminarProducto(${p.id})">Eliminar</button>
                             </td>
                         </tr>
@@ -189,8 +223,16 @@
             const id = document.getElementById('productId').value;
             const producto = {
                 name: document.getElementById('name').value,
+                brand: document.getElementById('brand').value,
+                category: document.getElementById('category').value,
+                stock: parseInt(document.getElementById('stock').value),
+                minStock: parseInt(document.getElementById('minStock').value),
+                maxStock: parseInt(document.getElementById('maxStock').value),
                 salePrice: parseInt(document.getElementById('salePrice').value),
-                stock: parseInt(document.getElementById('stock').value)
+                purchasePrice: parseInt(document.getElementById('purchasePrice').value),
+                expirationDate: new Date(document.getElementById('expirationDate').value),
+
+                
                 // <!-- Agregar demas campos -->
             };
 
@@ -214,11 +256,18 @@
         });
 
         // 3. Cargar datos en el formulario para editar
-        function prepararEdicion(id, name, price, stock) {
+        function prepararEdicion(id, name, brand, category, stock, minStock, maxStock, salePrice, purchasePrice, expirationDate) {
             document.getElementById('productId').value = id;
             document.getElementById('name').value = name;
-            document.getElementById('price').value = price;
+            document.getElementById('brand').value = brand;
+            document.getElementById('category').value = category;
             document.getElementById('stock').value = stock;
+            document.getElementById('minStock').value = minStock;
+            document.getElementById('maxStock').value = maxStock;
+            document.getElementById('salePrice').value = salePrice;
+            document.getElementById('purchasePrice').value = purchasePrice;
+            document.getElementById('expirationDate').value = expirationDate;
+            
 
             document.getElementById('btnSubmit').textContent = 'Actualizar Producto';
             document.getElementById('btnSubmit').style.backgroundColor = '#ffc107';

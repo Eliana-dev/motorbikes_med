@@ -3,7 +3,6 @@ package com.crud.demo.controller;
 import com.crud.demo.model.SparePart;
 import com.crud.demo.repository.SparePartRepository;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -21,14 +20,9 @@ public class SparePartController {
     }
 
     // Esto es un endpoint
-    @GetMapping("path")
-    public String getMethodName(@RequestParam String param) {
-        return new String();
-    }
-
     // endpoint para almacenar un nuevo repuesto CREATE (post:
     // http://localhost:8080/api/sparePart/{id})
-    @PostMapping("path")
+    @PostMapping
     public SparePart saveSparePart(@RequestBody SparePart sparePart) {
         return sparePartRepository.save(sparePart);
     }
@@ -37,12 +31,6 @@ public class SparePartController {
     @GetMapping
     public List<SparePart> getAllSpareParts() {
         return sparePartRepository.findAll();
-    }
-
-    // READ obtener por id
-    @GetMapping("/{id}")
-    public Optional<SparePart> getSparePartById(@PathVariable Long id) {
-        return sparePartRepository.findById(id);
     }
 
     // UPDATE

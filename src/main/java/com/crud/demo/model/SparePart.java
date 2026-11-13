@@ -5,7 +5,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 @Entity 
 @Table(name = "sparePart")
@@ -20,13 +19,13 @@ public class SparePart {
     private int stock;
     private int minStock;
     private int maxStock;
-    private BigDecimal salePrice;
-    private BigDecimal purchasePrice;
+    private int salePrice;
+    private int purchasePrice;
     private LocalDate expirationDate;
 
     public SparePart() {}
 
-    public SparePart(String name, String brand, String category,int stock, int minStock, int maxStock,BigDecimal salePrice, BigDecimal purchasePrice,LocalDate expirationDate) {
+    public SparePart(String name, String brand, String category,int stock, int minStock, int maxStock,int salePrice, int purchasePrice,LocalDate expirationDate) {
         this.name = name;
         this.brand = brand;
         this.category = category;
@@ -94,19 +93,19 @@ public class SparePart {
         this.maxStock = maxStock;
     }
 
-    public BigDecimal getSalePrice() {
+    public int getSalePrice() {
         return salePrice;
     }
 
-    public void setSalePrice(BigDecimal salePrice) {
+    public void setSalePrice(int salePrice) {
         this.salePrice = salePrice;
     }
 
-    public BigDecimal getPurchasePrice() {
+    public int getPurchasePrice() {
         return purchasePrice;
     }
 
-    public void setPurchasePrice(BigDecimal purchasePrice) {
+    public void setPurchasePrice(int purchasePrice) {
         this.purchasePrice = purchasePrice;
     }
 
