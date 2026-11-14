@@ -1,0 +1,143 @@
+/* =====================================================
+   Motor Bikes Medellín — ajustes propios
+   Se carga DESPUÉS de styles.css, así no hay que tocar
+   el archivo grande de Bootstrap.
+   ===================================================== */
+
+/* --- Barra de navegación: siempre negra (coincide con el fondo del logo) --- */
+body { padding-top: 126px; }
+#mainNav {
+  background-color: #000 !important;
+  padding-top: .5rem !important;
+  padding-bottom: .5rem !important;
+}
+#mainNav .nav-link.active { color: var(--bs-primary); }
+ 
+/* Texto oscuro sobre el amarillo (mejor contraste que el blanco) */
+.btn-primary {
+  --bs-btn-color: #212529;
+  --bs-btn-hover-color: #212529;
+  --bs-btn-active-color: #212529;
+  --bs-btn-disabled-color: #212529;
+}
+ 
+/* --- Carrusel de inicio --- */
+.hero-slide {
+  display: flex;
+  align-items: center;
+  min-height: max(440px, 68vh);
+  color: #fff;
+  background-size: cover;
+  background-position: center;
+}
+.hero-slide .container { padding-bottom: 2.5rem; }
+.hero-slide h1 {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+.hero-slide p { font-size: 1.2rem; max-width: 36rem; margin-bottom: 1.5rem; }
+/* Cada slide: capa oscura + foto + degradado de respaldo (se ve bien aunque aún no pongas la foto) */
+.hero-slide-2 { background-image: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)), url("../images/slide2.png"), linear-gradient(135deg, #0d0d0d, #1c1c1c); }
+ 
+/* --- Encabezado de páginas internas --- */
+.page-header {
+  background: linear-gradient(135deg, #0d0d0d, #2a0808);
+  color: #fff;
+  text-align: center;
+  padding: 3rem 0;
+}
+.page-header h1 { font-size: 2.25rem; font-weight: 700; text-transform: uppercase; margin-bottom: .5rem; }
+.page-header p { color: #adb5bd; margin: 0; }
+ 
+/* --- Tarjetas de acceso rápido y beneficios --- */
+.link-card {
+  display: block;
+  height: 100%;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+  border: 1px solid #e9ecef;
+  border-radius: .75rem;
+  transition: transform .2s, box-shadow .2s;
+}
+.link-card:hover { transform: translateY(-4px); box-shadow: 0 .75rem 1.5rem rgba(0,0,0,.1); color: inherit; }
+.link-card .more { font-weight: 700; color: #212529; }
+.icon-circle {
+  width: 4.5rem; height: 4.5rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-bottom: 1rem;
+  font-size: 1.75rem;
+  border-radius: 50%;
+  background: var(--bs-primary);
+  color: #212529;
+}
+ 
+/* --- Marcas aliadas (texto; puedes cambiarlas por <img> de cada logo) --- */
+.brand-chip {
+  display: block;
+  padding: 1rem .5rem;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #adb5bd;
+  transition: color .2s;
+}
+.brand-chip:hover { color: #212529; }
+ 
+/* --- Banda de llamada a la acción --- */
+.cta-band { background: #000; color: #fff; text-align: center; padding: 3.5rem 0; }
+.cta-band h2 { font-weight: 700; text-transform: uppercase; }
+ 
+/* --- Catálogos (repuestos y servicios) --- */
+.filter-sticky { position: sticky; top: 140px; }
+@media (max-width: 991.98px) { .filter-sticky { position: static; } }
+ 
+.product-card { border: 1px solid #e9ecef; border-radius: .75rem; overflow: hidden; transition: box-shadow .2s; }
+.product-card:hover { box-shadow: 0 .5rem 1.25rem rgba(0,0,0,.1); }
+.product-thumb {
+  height: 150px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem;
+  color: #ced4da;
+  background: #f1f3f5;
+}
+.product-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.product-price { font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 1.15rem; }
+ 
+/* --- Pie de página --- */
+.site-footer { background: #000; color: #adb5bd; padding: 3rem 0 1.5rem; font-size: .95rem; }
+.site-footer h5 { color: #fff; font-size: 1rem; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 1rem; }
+.site-footer a { color: #adb5bd; text-decoration: none; }
+.site-footer a:hover { color: var(--bs-primary); }
+.site-footer ul { list-style: none; padding: 0; margin: 0; }
+.site-footer li { margin-bottom: .4rem; }
+.site-footer .copy { border-top: 1px solid #2a2d31; margin-top: 2rem; padding-top: 1.25rem; font-size: .85rem; }
+ 
+/* --- Gestión de repuestos --- */
+.crud-nav { gap: .5rem; }
+.crud-nav .nav-link {
+  color: #212529;
+  font-weight: 700;
+  border: 1px solid #dee2e6;
+  border-radius: .5rem;
+  background: #fff;
+}
+.crud-nav .nav-link:hover { border-color: var(--bs-primary); }
+.crud-nav .nav-link.active { background: var(--bs-primary); border-color: var(--bs-primary); color: #212529; }
+ 
+/* Tabla del inventario: ancha y legible (cabe sin barra de desplazamiento desde ~1300 px) */
+.tabla-inventario { font-size: .9rem; }
+.tabla-inventario th { font-size: .78rem; text-transform: uppercase; letter-spacing: .03em; color: #495057; }
+.tabla-inventario th, .tabla-inventario td { padding: .75rem .5rem; }
+.tabla-inventario td { white-space: nowrap; }
+.tabla-inventario td:nth-child(2) { white-space: normal; min-width: 9rem; }   /* el nombre puede ocupar 2 líneas */
+.tabla-inventario td:last-child .btn { padding: .2rem .45rem; font-size: .8rem; }
+ 
+/* Ejemplos (Ej. 20) en gris clarito dentro del formulario */
+.crud-form .form-control::placeholder { color: #b9bfc5; }
+ 
